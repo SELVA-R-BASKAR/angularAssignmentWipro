@@ -15,16 +15,22 @@ import { LoginComponent } from './login/login.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CreateNewCardComponent } from './view-cards/create-new-card/create-new-card.component';
-import { SuccessComponent } from './view-cards/create-new-card/success/success.component'
+import { AuthComponent } from './auth/auth.component'
+import { HttpClientModule } from '@angular/common/http';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { SuccessComponent } from './success/success.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent },
-  { path: '', component: LoginComponent},
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'viewCards', component: ViewCardsComponent ,
-    children:[{path:'createNewCard', component: CreateNewCardComponent,
-      children:[{path:'success', component: SuccessComponent}]}]},
-  { path: 'topupCard', component: TopupCardComponent},
+  // { path: '', component: AppComponent },
+  // { path: 'login', component: LoginComponent},
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: 'auth', component: AuthComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'viewCards', component: ViewCardsComponent , canActivate: [AuthGuard], 
+    children:[{path:'createNewCard', component: CreateNewCardComponent,}]},
+  { path: 'success', component: SuccessComponent},
+  { path: 'topupCard', component: TopupCardComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -35,6 +41,9 @@ const appRoutes: Routes = [
     TopupCardComponent,
     LoginComponent,
     CreateNewCardComponent,
+    AuthComponent,
+    LoadingSpinnerComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,8 @@ const appRoutes: Routes = [
     FormsModule, 
     MatCheckboxModule, 
     MatTabsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

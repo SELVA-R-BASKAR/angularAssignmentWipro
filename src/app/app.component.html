@@ -3,10 +3,12 @@
    <div class="logo brand">
       <img src="../../assets/wallet.png" width="80px" alt="Login" class="logo-img" />
       <!-- <i class="fa fa-cloud logo-img" width="80px" aria-hidden="true" style="font-size:70px; color:var(--color-primary)"></i> -->       
-      <strong> MyVirtualWallet</strong>
+      <h2 width="200px">VIRTUAL WALLET</h2>
     </div>
   <div class="row">
-    <div class="col-md-12" style="padding-left: 0px;">
+    <div class="col-md-12" style="padding-left: 0px;" *ngIf="isLoggedIn">
+      <!-- <nav class="navbar navbar-dark bg-primary"> -->
+        <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;"> -->
       <ul (click)="show = false;" class="nav nav-pills">
         <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
           <a routerLink="/dashboard">Dashboard</a>
@@ -18,9 +20,12 @@
           <a [routerLink]="['/topupCard']">TopUp Cards</a>
         </li>
         <li role="presentation" routerLinkActive="active">
-          <a [routerLink]="['/logout']">LogOut</a>
+          <a class="btn btn-primary" [routerLink]="['/auth']" (click)="onLogOut()">Log Out</a>
+          <!-- <button class="btn btn-primary" >LogOut</button> ->
+          <button class="btn btn-outline-primary my-2 my-sm-0" (Click)="onLogOut()">LogOut</button> -->
         </li>
       </ul>
+    <!-- </nav> -->
     </div>
   </div>
   <div>

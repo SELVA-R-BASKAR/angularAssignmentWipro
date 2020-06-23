@@ -1,31 +1,89 @@
 <div class="container">
-        <div class="row">
-          <div class="col-10">
-            <div class="jumbotron">
-              <h2>Create New Virtual Card</h2>
-              <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
-                <div class="form-group">
-                  <label for="cardName">Card Name</label>
-                  <input type="text"  class="form-control" formControlName="cardName" [ngClass]="{'is-invalid':form.get('firstName').touched}" placeholder="eg., Online Payments" required />
-                </div>
-                <div class="form-group">
-                    <label for="selectAccount">Select Account</label>
-                    <select class="mandatory form-control" formControlName="selectAccount"> 
-                                <!-- <option value="null" selected>PleaseSelect | translate</option> -->
-                                <option value="myWallet" selected>My Wallet</option><span> <p>Balance: 100000</p></span>
-                    </select>
-                </div>
-                <div class="form-group">
-                  <label for="amount">Amount</label>
-                  <input type="text" class="form-control" formControlName="amount" [ngClass]="{'is-invalid':form.get('amount').touched}" required />
-                  <div class="invalid-feedback">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-primary"  [disabled]="!form.valid" (click)= "onCreateCard();">Create Card</button>
-                </div>
-              </form>
+  <div class="row">
+    <div class="col-10">
+      <div class="jumbotron">
+        <h2>Create New Virtual Card</h2>
+        <!-- <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()"> -->
+          <form [formGroup]="createCardForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="cardName">Card Name</label>
+              <input
+                type="text"
+                id="cardName"
+                formControlName="cardName"
+                class="form-control"
+                placeholder="eg., Online Payments" 
+                required />
             </div>
-          </div>
+            <div class="form-group">
+              <label for="selectAccount">Select Account</label>
+                <select
+                id="selectAccount"
+                formControlName="selectAccount"
+                class="form-control"
+                placeholder="Select Account" 
+                required >
+                  <!-- <option value="null" selected>PleaseSelect | translate</option> -->
+                  <option value="myWallet" selected>My Wallet</option>
+                </select>
+                Balance: 100000
+            </div>
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <input
+                type="text"
+                id="cardNumber"
+                formControlName="cardNumber"
+                class="form-control"
+                placeholder="XXXX XXXX XXXX XXXX"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="expiry">Expires On</label>
+              <input
+                type="text"
+                id="expiry"
+                formControlName="expiry"
+                class="form-control"
+                placeholder="MM/YYYY"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="cardAmount">Amount</label>
+              <input
+                type="number"
+                id="cardAmount"
+                formControlName="cardAmount"
+                class="form-control"
+                placeholder="0.00" 
+                required />
+            </div>
+            
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!createCardForm.valid">Create Card</button>
         </div>
+        </form>
       </div>
+    </div>
+  </div>
+</div>
+
+<!--
+   <div class="form-group">
+          <label for="cardName">Card Name</label>
+          <input type="text" class="form-control" ngModel name="cardName" placeholder="eg., Online Payments" required />
+        </div>
+        <div class="form-group">
+          <label for="selectAccount">Select Account</label>
+          <select class="form-control" ngModel name="selectAccount" required>
+            <!-- <option value="null" selected>PleaseSelect | translate</option> ->
+            <option value="myWallet" selected>My Wallet</option>
+          </select>
+          Balance: 100000
+        </div>
+        <button class="btn btn-primary" [disabled]="!form.valid" (click)="onCreateCard();">Create Card</button>
+
+-->

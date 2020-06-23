@@ -1,9 +1,22 @@
 h3 {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
+}
 
 .card-container {
-    border-width:2px;  
-    border-style:solid;
-    margin: 10px;
-  }
+  border-width:2px;  
+  border-style:solid;
+  margin: 10px;
+}
+
+.btn {
+  border: dotted;
+  border-color: darkgray;
+  padding: 26px 6px;
+  cursor: pointer;
+  background-color: white;
+  box-sizing: unset;
+}
+
+.btn::after {
+    border: none;
+}

@@ -1,3 +1,90 @@
-<p>
-  topup-card works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="jumbotron">
+        <h2>TopUp Virtual Card</h2>
+        <!-- <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()"> -->
+          <div class="alert alert-danger" *ngIf="error">
+            <p>{{ error }}</p>
+          </div>
+          <form [formGroup]="topUpCardForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="cardName">Card Name</label>
+              <input
+                type="text"
+                id="cardName"
+                formControlName="cardName"
+                class="form-control"
+                placeholder="Netflix Subscriptions" 
+                required />
+            </div>
+            <div class="form-group">
+              <label for="selectAccount">Select Account</label>
+                <select
+                id="selectAccount"
+                formControlName="selectAccount"
+                class="form-control"
+                placeholder="Select Account" 
+                required >
+                  <!-- <option value="null" selected>PleaseSelect | translate</option> -->
+                  <option value="myWallet" selected>My Wallet</option>
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="cardAmount">Amount</label>
+              <input
+                type="number"
+                id="cardAmount"
+                formControlName="cardAmount"
+                class="form-control"
+                placeholder="0.00"
+                required />
+            </div>        
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!topUpCardForm.valid">TopUp Card</button>
+        </div>
+        </form>
+        <div class="alert alert-success" *ngIf="success">
+          <p>{{ success }}</p>
+          <button type="button" class="btn btn-primary" (click)="onViewCards();"> View Cards </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="jumbotron">
+        <h2>TopUp Virtual Card</h2>
+        <!- <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()"> ->
+          <form #topUpForm="ngForm" (ngSubmit)="onTopUpCard(topUpForm);">
+            <div class="form-group">
+              <label for="cardName">Select card</label>
+              <input type="text"  class="form-control" name="cardName" placeholder="Netflix Subscriptions" required />
+              Balance: 110
+            </div>
+            <div class="form-group">
+              <label for="selectAccount">Select Account</label>
+              <select class="mandatory form-control" name="selectAccount"> 
+                          <!-- <option value="null" selected>PleaseSelect | translate</option> ->
+                          <option value="myWallet" selected>My Wallet</option>
+              </select>
+              Balance: 100000
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount ( Select from below OR enter the amount )</label>
+            <input type="text" class="form-control" name="amount" required />
+          </div>
+          <div>
+            <button class="btn btn-primary" type="submit" [disabled]="!topUpForm.valid">TopUp Card</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->

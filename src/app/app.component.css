@@ -10,9 +10,21 @@
 }
 
 .brand {
-    padding: 25px 50%;
+    padding: 25px 47%;
 }
 
-.h3 {
+h3 {
     width: 50px;
+}
+
+.btn {
+    border: 0px solid transparent;
+}
+
+h2 {
+    color: slategray;
+    font-family: fantasy;
+    font-size: 200%;
+    width: 180px;
+    margin: 6px -42px;
 }

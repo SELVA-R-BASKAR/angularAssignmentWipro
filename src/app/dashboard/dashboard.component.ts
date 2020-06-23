@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  availableBalance: number = 0;
+  noOfCards: number = 0;
+
+  constructor(
+    private walletService: DataService
+  ) { }
 
   ngOnInit() {
+  this.availableBalance = this.walletService.getAvailableBalance();
+  this.noOfCards = this.walletService.getNoOfCards();
+  console.log(this.availableBalance);
+  console.log(this.noOfCards);
   }
 
 }
